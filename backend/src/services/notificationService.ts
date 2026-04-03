@@ -63,7 +63,7 @@ export const createNotification = async (
       actorName: payload.actorName,
       actorAvatarUrl: payload.actorAvatarUrl,
       actionUrl: payload.actionUrl,
-      metadata: payload.metadata ?? undefined,
+      metadata: payload.metadata ? JSON.parse(JSON.stringify(payload.metadata)) : undefined,      
     },
   });
 
