@@ -52,10 +52,16 @@ This project is the from-scratch alternative: a real-time notification center bu
 ---
 
 ## Architecture
-![Architectural Diagram](assets/Architecture-Diagram.png)
 
-**Real-time flow:**
-![Real-Time Flow](assets/Real-Time-Flow.png)
+#### Architectural Diagram
+<p align="center">
+  <img src="assets/Architecture-Diagram.png" width="700"/>
+</p>
+
+#### Real-Time Flow
+<p align="center">
+  <img src="assets/Real-Time-Flow.png" width="700"/>
+</p>
 
 ---
 
