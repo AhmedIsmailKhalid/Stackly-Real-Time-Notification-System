@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────
 # Stage 1: Build
 # ─────────────────────────────────────────
-FROM node:20-alpine AS builder
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
@@ -21,7 +21,9 @@ RUN npm run build
 # ─────────────────────────────────────────
 # Stage 2: Production
 # ─────────────────────────────────────────
-FROM node:20-alpine AS production
+FROM node:20-slim AS production
+
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
