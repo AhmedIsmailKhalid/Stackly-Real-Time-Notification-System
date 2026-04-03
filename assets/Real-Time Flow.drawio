@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="c8mNDu9HUwlstlahkR0p">
+    <mxGraphModel dx="1106" dy="644" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-3" edge="1" parent="1" source="lQrAsWjVGQo8YliG0WjS-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" target="lQrAsWjVGQo8YliG0WjS-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;strokeWidth=4;" value="&lt;font&gt;Simulate button clicked&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="450" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-5" edge="1" parent="1" source="lQrAsWjVGQo8YliG0WjS-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" target="lQrAsWjVGQo8YliG0WjS-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;strokeWidth=4;" value="&lt;font&gt;POST /api/notifications/simulate&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="450" x="70" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-7" edge="1" parent="1" source="lQrAsWjVGQo8YliG0WjS-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" target="lQrAsWjVGQo8YliG0WjS-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;strokeWidth=4;" value="&lt;font&gt;notificationService.createNotification() → DB write&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="450" x="70" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-9" edge="1" parent="1" source="lQrAsWjVGQo8YliG0WjS-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" target="lQrAsWjVGQo8YliG0WjS-8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;strokeWidth=4;" value="&lt;font&gt;socketService.emitToUser(userId, &#39;notification:new&#39;, payload)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="450" x="70" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-11" edge="1" parent="1" source="lQrAsWjVGQo8YliG0WjS-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" target="lQrAsWjVGQo8YliG0WjS-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontStyle=1;strokeWidth=4;" value="&lt;font&gt;Socket.io room: user:{userId}&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="450" x="70" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-13" edge="1" parent="1" source="lQrAsWjVGQo8YliG0WjS-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;" target="lQrAsWjVGQo8YliG0WjS-12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;fillColor=#D8A8BC;fontColor=#000000;strokeColor=#A50040;fontStyle=1;strokeWidth=4;" value="&lt;font&gt;Client receives event → Zustand store updates&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="450" x="70" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="lQrAsWjVGQo8YliG0WjS-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;fillColor=#FFCE9F;fontStyle=1;strokeWidth=4;strokeColor=#FFB570;" value="&lt;font&gt;Bell badge animates · Notification appears in feed&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="450" x="70" y="560" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
