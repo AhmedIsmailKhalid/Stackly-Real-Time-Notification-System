@@ -1,0 +1,142 @@
+// backend/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────
+
+enum NotificationType {
+  MENTION        // Someone mentioned you in a comment/doc
+  COMMENT        // New comment on your content
+  TEAM_ACTIVITY  // Teammate joined, left, role changed
+  SYSTEM_ALERT   // Deployment, build status, system events
+  ASSIGNMENT     // Task/ticket assigned to you
+}
+
+enum NotificationPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+// ─────────────────────────────────────────
+// USER
+// ─────────────────────────────────────────
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  username     String   @unique
+  displayName  String
+  avatarUrl    String?
+  passwordHash String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  notifications        Notification[]
+  notificationPrefs    NotificationPreference[]
+  refreshTokens        RefreshToken[]
+
+  @@map("users")
+}
+
+// ─────────────────────────────────────────
+// NOTIFICATION
+// ─────────────────────────────────────────
+
+model Notification {
+  id       String               @id @default(uuid())
+  userId   String               // recipient
+  type     NotificationType
+  priority NotificationPriority @default(MEDIUM)
+
+  title   String
+  message String
+  read    Boolean  @default(false)
+  readAt  DateTime?
+
+  // Actor — the user who triggered this notification (optional for system alerts)
+  actorId          String?
+  actorName        String?
+  actorAvatarUrl   String?
+
+  // Deep link — where clicking the notification should navigate
+  actionUrl  String?
+
+  // Arbitrary metadata (e.g. document title, PR number, build id)
+  metadata  Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Indexes for common query patterns
+  @@index([userId, read])
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([userId, type])
+
+  @@map("notifications")
+}
+
+// ─────────────────────────────────────────
+// NOTIFICATION PREFERENCES
+// ─────────────────────────────────────────
+
+model NotificationPreference {
+  id     String           @id @default(uuid())
+  userId String
+  type   NotificationType
+
+  // Delivery channels
+  inApp Boolean @default(true)
+  email Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // One preference row per user per type
+  @@unique([userId, type])
+  @@index([userId])
+
+  @@map("notification_preferences")
+}
+
+// ─────────────────────────────────────────
+// REFRESH TOKENS
+// ─────────────────────────────────────────
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String
+  tokenHash String   @unique  // Store hash, never raw token
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime @default(now())
+
+  // Device/client info for session management
+  userAgent String?
+  ipAddress String?
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash])
+
+  @@map("refresh_tokens")
+}
