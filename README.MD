@@ -4,7 +4,7 @@ A production-deployed, full-stack real-time notification system built on top of 
 
 **Live site:** [stackly.vercel.app](https://stackly-real-time-notification-syst.vercel.app/login)  
 **API health:** [stackly-backend-334263295854.us-central1.run.app/health](https://stackly-backend-334263295854.us-central1.run.app/health)  
-**Repo:** [github.com/YOUR_USERNAME/stackly-notification-center](https://github.com/AhmedIsmailKhalid/Stackly-Real-Time-Notification-System)
+**Repo:** [https://github.com/AhmedIsmailKhalid/Stackly-Real-Time-Notification-System](https://github.com/AhmedIsmailKhalid/Stackly-Real-Time-Notification-System)
 
 ---
 
